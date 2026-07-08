@@ -520,3 +520,137 @@ body {
     }
 }
 
+/* ===========================
+   Job Save / Load Buttons
+=========================== */
+
+.job-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.job-actions button {
+    background: #0d2c54;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 12px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.job-actions button:hover {
+    background: #24579b;
+}
+
+/* ===========================
+   Save / Load / Recent Jobs
+=========================== */
+
+.job-save-status {
+    align-self: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8b1e1e;
+}
+
+.job-save-status.saved {
+    color: #168000;
+}
+
+.recent-jobs-panel {
+    margin-top: 8px;
+    background: #ffffff;
+    border: 1px solid #cfd6df;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.recent-jobs-panel h4 {
+    margin: 0 0 6px 0;
+    color: #0d2c54;
+    font-size: 13px;
+}
+
+.recent-job-card {
+    border: 1px solid #d6dbe1;
+    border-radius: 5px;
+    padding: 6px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    background: #f8f9fb;
+    font-size: 12px;
+}
+
+.recent-job-card:hover {
+    background: #eef3f9;
+}
+
+.recent-job-number {
+    font-weight: bold;
+    color: #0d2c54;
+}
+
+.recent-job-route {
+    font-size: 12px;
+}
+
+.recent-job-meta {
+    font-size: 11px;
+    color: #555;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-box {
+    width: 520px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    border: 2px solid #0d2c54;
+}
+
+.saved-job-card {
+    border: 1px solid #cfd6df;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    background: #f8f9fb;
+}
+
+.saved-job-card.selected {
+    background: #dfeaf7;
+    border-color: #0d2c54;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.modal-actions button {
+    background: #0d2c54;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 12px;
+    cursor: pointer;
+}

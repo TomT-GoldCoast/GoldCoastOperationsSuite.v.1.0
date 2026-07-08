@@ -33,9 +33,9 @@ Promise.all([
 
     document.getElementById("contactSheetContainer").innerHTML = contactSheetHtml;
 
- setupContactSheet();
-setupVehicleDatabase();
-setupFinancialCalculations();   
+    setupContactSheet();
+    setupVehicleDatabase();
+    setupJobStorage();
 });
 
 
@@ -47,28 +47,8 @@ function setupContactSheet() {
     const addVehicleButton = document.getElementById("addVehicleButton");
     const vehicleGrid = document.getElementById("vehicleGrid");
 
-    let vehicleCount = 1;
-
     addVehicleButton.addEventListener("click", () => {
-        if (vehicleCount >= 50) {
-            alert("Maximum of 50 vehicles reached.");
-            return;
-        }
-
-        vehicleCount++;
-
-        const firstVehicle = vehicleGrid.querySelector(".vehicle-card");
-        const newVehicle = firstVehicle.cloneNode(true);
-
-        clearVehicleCard(newVehicle);
-
-        vehicleGrid.appendChild(newVehicle);
-
-        const newMakeSelect = newVehicle.querySelector(".vehicle-make");
-        populateMakeDropdown(newMakeSelect);
-        connectMakeToModel(newMakeSelect);
-
-        renumberVehicles();
+        addVehicleCard();
     });
 
     vehicleGrid.addEventListener("input", updateAllVehicleTitles);
@@ -77,7 +57,6 @@ function setupContactSheet() {
     vehicleGrid.addEventListener("click", event => {
         if (event.target.classList.contains("remove-vehicle-button")) {
             event.target.closest(".vehicle-card").remove();
-            vehicleCount--;
             renumberVehicles();
         }
     });
@@ -85,10 +64,28 @@ function setupContactSheet() {
     renumberVehicles();
 }
 
+function addVehicleCard() {
+    const vehicleGrid = document.getElementById("vehicleGrid");
+    const currentCount = vehicleGrid.querySelectorAll(".vehicle-card").length;
 
-// ===============================
-// Vehicle Card Functions
-// ===============================
+    if (currentCount >= 50) {
+        alert("Maximum of 50 vehicles reached.");
+        return;
+    }
+
+    const firstVehicle = vehicleGrid.querySelector(".vehicle-card");
+    const newVehicle = firstVehicle.cloneNode(true);
+
+    clearVehicleCard(newVehicle);
+
+    vehicleGrid.appendChild(newVehicle);
+
+    const newMakeSelect = newVehicle.querySelector(".vehicle-make");
+    populateMakeDropdown(newMakeSelect);
+    connectMakeToModel(newMakeSelect);
+
+    renumberVehicles();
+}
 
 function clearVehicleCard(vehicleCard) {
     const inputs = vehicleCard.querySelectorAll("input");
@@ -226,42 +223,160 @@ function connectMakeToModel(makeSelect) {
     });
 }
 
+
 // ===============================
-// Financial Calculations
+// Save / Load Jobs
 // ===============================
 
-function setupFinancialCalculations() {
-    const customerTotal = document.getElementById("customerTotal");
-    const depositReceived = document.getElementById("depositReceived");
-    const carrierRate = document.getElementById("carrierRate");
-    const carrierPaid = document.getElementById("carrierPaid");
+function setupJobStorage() {
+    const saveButton = document.getElementById("saveJobButton");
+    const loadButton = document.getElementById("loadJobButton");
+    const newJobButton = document.getElementById("newJobButton");
 
-    const customerBalance = document.getElementById("customerBalance");
-    const carrierBalance = document.getElementById("carrierBalance");
-    const grossProfit = document.getElementById("grossProfit");
-
-    const moneyInputs = [customerTotal, depositReceived, carrierRate, carrierPaid];
-
-    moneyInputs.forEach(input => {
-        input.addEventListener("input", calculateFinancials);
-    });
-
-    function calculateFinancials() {
-        const total = Number(customerTotal.value) || 0;
-        const deposit = Number(depositReceived.value) || 0;
-        const rate = Number(carrierRate.value) || 0;
-        const paid = Number(carrierPaid.value) || 0;
-
-        const customerBalanceAmount = total - deposit;
-        const carrierBalanceAmount = rate - paid;
-        const profitAmount = total - rate;
-
-        customerBalance.textContent = formatMoney(customerBalanceAmount);
-        carrierBalance.textContent = formatMoney(carrierBalanceAmount);
-        grossProfit.textContent = formatMoney(profitAmount);
-    }
+    saveButton.addEventListener("click", saveCurrentJob);
+    loadButton.addEventListener("click", loadSavedJob);
+    newJobButton.addEventListener("click", startNewJob);
 }
 
-function formatMoney(amount) {
-    return "$" + amount.toFixed(2);
+function getContactSheetFields() {
+    return Array.from(
+        document.querySelectorAll("#contactSheetContainer input, #contactSheetContainer select, #contactSheetContainer textarea")
+    );
+}
+
+function saveCurrentJob() {
+    const jobNumberInput = document.getElementById("jobNumber");
+    const jobNumber = jobNumberInput.value.trim();
+
+    if (!jobNumber) {
+        alert("Please enter a Job Number before saving.");
+        return;
+    }
+
+    const fields = getContactSheetFields();
+
+    const jobData = {
+        jobNumber: jobNumber,
+        savedAt: new Date().toISOString(),
+        vehicleCount: document.querySelectorAll(".vehicle-card").length,
+        fieldValues: fields.map(field => field.value)
+    };
+
+    localStorage.setItem("gcos_job_" + jobNumber, JSON.stringify(jobData));
+    updateJobIndex(jobNumber);
+
+    alert("Job saved: " + jobNumber);
+}
+
+function updateJobIndex(jobNumber) {
+    const index = JSON.parse(localStorage.getItem("gcos_job_index")) || [];
+
+    if (!index.includes(jobNumber)) {
+        index.push(jobNumber);
+    }
+
+    localStorage.setItem("gcos_job_index", JSON.stringify(index));
+}
+
+function loadSavedJob() {
+    const index = JSON.parse(localStorage.getItem("gcos_job_index")) || [];
+
+    if (index.length === 0) {
+        alert("No saved jobs found.");
+        return;
+    }
+
+    const jobNumber = prompt(
+        "Enter Job Number to load:\n\nSaved Jobs:\n" + index.join("\n")
+    );
+
+    if (!jobNumber) {
+        return;
+    }
+
+    const savedJob = localStorage.getItem("gcos_job_" + jobNumber.trim());
+
+    if (!savedJob) {
+        alert("Job not found: " + jobNumber);
+        return;
+    }
+
+    const jobData = JSON.parse(savedJob);
+
+    rebuildVehicleCards(jobData.vehicleCount);
+    restoreFieldValues(jobData.fieldValues);
+
+    alert("Job loaded: " + jobData.jobNumber);
+}
+
+function rebuildVehicleCards(vehicleCount) {
+    const vehicleGrid = document.getElementById("vehicleGrid");
+    const vehicleCards = vehicleGrid.querySelectorAll(".vehicle-card");
+
+    vehicleCards.forEach((card, index) => {
+        if (index > 0) {
+            card.remove();
+        }
+    });
+
+    const firstVehicle = vehicleGrid.querySelector(".vehicle-card");
+    clearVehicleCard(firstVehicle);
+
+    for (let i = 1; i < vehicleCount; i++) {
+        addVehicleCard();
+    }
+
+    renumberVehicles();
+}
+
+function restoreFieldValues(values) {
+    const fields = getContactSheetFields();
+
+    fields.forEach((field, index) => {
+        field.value = values[index] || "";
+
+        field.dispatchEvent(new Event("change", { bubbles: true }));
+        field.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+
+    updateAllVehicleTitles();
+}
+
+function startNewJob() {
+    const confirmed = confirm("Start a new blank job? Unsaved changes will be lost.");
+
+    if (!confirmed) {
+        return;
+    }
+
+    rebuildVehicleCards(1);
+
+    const fields = getContactSheetFields();
+
+    fields.forEach(field => {
+        if (field.id === "jobNumber") {
+            field.value = generateTemporaryJobNumber();
+        } else if (field.tagName === "SELECT") {
+            field.selectedIndex = 0;
+        } else {
+            field.value = "";
+        }
+
+        field.dispatchEvent(new Event("change", { bubbles: true }));
+        field.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+
+    updateAllVehicleTitles();
+}
+
+function generateTemporaryJobNumber() {
+    const now = new Date();
+
+    const year = String(now.getFullYear()).slice(-2);
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    const hour = String(now.getHours()).padStart(2, "0");
+    const minute = String(now.getMinutes()).padStart(2, "0");
+
+    return "GC-" + year + month + day + "-" + hour + minute;
 }

@@ -54,6 +54,32 @@
             Route:
             <strong id="routeDisplay">Pickup City, ST → Delivery City, ST</strong>
         </div>
+        <div class="job-actions">
+    <button type="button" id="saveJobButton">Save Job</button>
+    <button type="button" id="loadJobButton">Load Job</button>
+    <button type="button" id="newJobButton">New Job</button>
+    <span id="jobSaveStatus" class="job-save-status">Unsaved</span>
+</div>
+
+<div class="recent-jobs-panel">
+    <h4>Recent Jobs</h4>
+    <div id="recentJobsList" class="recent-jobs-list">
+        No saved jobs yet.
+    </div>
+</div>
+
+<div id="loadJobModal" class="modal hidden">
+    <div class="modal-box">
+        <h3>Open Saved Job</h3>
+
+        <div id="savedJobsList" class="saved-jobs-list"></div>
+
+        <div class="modal-actions">
+            <button type="button" id="confirmLoadJobButton">Load</button>
+            <button type="button" id="cancelLoadJobButton">Cancel</button>
+        </div>
+    </div>
+</div>
     </div>
 
     <div class="two-column-layout">

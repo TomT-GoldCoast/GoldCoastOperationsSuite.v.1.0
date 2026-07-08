@@ -1,0 +1,83 @@
+🟡 GoldCoastOperationsSuite
+│
+├── ⚪ index.html
+├── ⚪ app.js
+├── ⚪ styles.css
+├── ⚪ README.md
+├── ⚪ CHANGELOG.md
+├── ⚪ PROJECT_VISION.md
+├── ⚪ PROJECT_ROADMAP.md
+├── ⚪ USER_FEEDBACK.md
+│
+├── 🟡 data
+│     ├── ⚪ vehicle-database.json
+│     └── ⚪ settings.json
+│
+├── 🟡 templates
+│     ├── ⚪ contact-sheet.html
+│     ├── ⚪ invoice.html
+│     ├── ⚪ bol.html
+│     ├── ⚪ rate-agreement.html
+│     └── ⚪ analytics.html
+│
+├── 🟡 scripts
+│     ├── ⚪ appInitializer.js
+│     ├── ⚪ contactSheet.js
+│     ├── ⚪ vehicleManager.js
+│     ├── ⚪ financialManager.js
+│     ├── ⚪ customerManager.js
+│     ├── ⚪ carrierManager.js
+│     ├── ⚪ jobStorage.js
+│     ├── ⚪ recentJobs.js
+│     ├── ⚪ printManager.js
+│     ├── ⚪ mapManager.js
+│     ├── ⚪ analyticsManager.js
+│     ├── ⚪ settingsManager.js
+│     └── ⚪ utilities.js
+│
+├── 🟡 images
+│     ├── ⚪ logo.png
+│     │
+│     ├── 🟡 icons
+│     │
+│     ├── 🟡 backgrounds
+│     │
+│     └── 🟡 badges
+│
+├── 🟡 documents
+│     ├── 🟡 Generated Invoices
+│     ├── 🟡 Generated BOL
+│     ├── 🟡 Generated Rate Confirmations
+│     └── 🟡 Reports
+│
+├── 🟡 jobs
+│     ├── 🟡 Active
+│     ├── 🟡 Completed
+│     ├── 🟡 Cancelled
+│     └── 🟡 Archived
+│
+├── 🟡 customers
+│
+├── 🟡 carriers
+│
+├── 🟡 photos
+│     ├── 🟡 Pickup
+│     ├── 🟡 Delivery
+│     └── 🟡 Damage
+│
+├── 🟡 backups
+│     ├── 🟡 Daily
+│     ├── 🟡 Weekly
+│     └── 🟡 Monthly
+│
+├── 🟡 docs
+│     ├── ⚪ Development Notes.md
+│     ├── ⚪ Beta Notes.md
+│     └── ⚪ Release Notes.md
+│
+└── 🟡 design
+      ├── ⚪ Screen Ideas.md
+      ├── ⚪ Workflow Sketches.md
+      ├── ⚪ UI Ideas.md
+      ├── ⚪ Future Features.md
+      └── ⚪ Color Themes.md
