@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gold Coast Operations Suite</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <h1>Gold Coast Operations Suite</h1>
+    <p>Simple transport documents and order management</p>
+  </header>
+
+  <nav class="tab-bar">
+    <button class="tab-button active" data-screen="home-screen">Home</button>
+    <button class="tab-button" data-screen="order-screen">Order Info</button>
+    <button class="tab-button" data-screen="contact-sheet-screen">Contact Sheet</button>
+    <button class="tab-button" data-screen="invoice-screen">Invoice</button>
+    <button class="tab-button" data-screen="bill-of-lading-screen">Bill of Lading</button>
+    <button class="tab-button" data-screen="rate-confirmation-screen">Rate Confirmation</button>
+  </nav>
+
+  <main class="app-main">
+    <section id="home-screen" class="screen active-screen">
+      <h2>Home</h2>
+      <p>Welcome to the Gold Coast Operations Suite.</p>
+    </section>
+
+    <section id="order-screen" class="screen">
+      <h2>Order Info</h2>
+      <p>This will be the main order entry screen.</p>
+    </section>
+
+  <section id="contact-sheet-screen" class="screen">
+  <div id="contactSheetContainer"></div>
+</section>
+
+    <section id="invoice-screen" class="screen">
+      <h2>Invoice</h2>
+      <p>This will show the customer invoice.</p>
+    </section>
+
+    <section id="bill-of-lading-screen" class="screen">
+      <h2>Bill of Lading</h2>
+      <p>This will show the pickup and delivery document.</p>
+    </section>
+
+    <section id="rate-confirmation-screen" class="screen">
+      <h2>Rate Confirmation</h2>
+      <p>This will show the carrier rate confirmation.</p>
+    </section>
+  </main>
+
+  <footer class="action-bar">
+    <button>Save Order</button>
+    <button>Print Current Document</button>
+    <button>Download PDF</button>
+    <button>Start New Order</button>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

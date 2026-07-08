@@ -1,0 +1,65 @@
+{
+  "manufacturers": [
+
+    {
+      "name": "Acura",
+      "country": "Japan",
+      "type": "Passenger",
+      "models": [
+        "CL",
+        "ILX",
+        "Integra",
+        "Legend",
+        "MDX",
+        "NSX",
+        "RDX",
+        "RL",
+        "RLX",
+        "RSX",
+        "SLX",
+        "TL",
+        "TLX",
+        "TSX",
+        "Vigor",
+        "ZDX"
+      ]
+    },
+
+    {
+      "name": "Alfa Romeo",
+      "country": "Italy",
+      "type": "Passenger",
+      "models": [
+        "4C",
+        "8C",
+        "Giulia",
+        "Giulietta",
+        "Milano",
+        "Spider",
+        "Stelvio",
+        "Tonale"
+      ]
+    },
+
+    {
+      "name": "Aston Martin",
+      "country": "United Kingdom",
+      "type": "Exotic",
+      "models": [
+        "DB7",
+        "DB9",
+        "DB11",
+        "DB12",
+        "DBS",
+        "Rapide",
+        "Vanquish",
+        "Vantage",
+        "Virage",
+        "Valhalla",
+        "Valkyrie",
+        "DBX"
+      ]
+    }
+
+  ]
+}

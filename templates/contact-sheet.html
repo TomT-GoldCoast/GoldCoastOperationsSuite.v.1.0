@@ -1,0 +1,323 @@
+<div class="contact-sheet-screen">
+
+    <div class="job-strip">
+        <div class="job-strip-row">
+
+            <div class="field job-number-field">
+                <label>Job Number</label>
+                <input type="text" id="jobNumber" value="GC-26070018">
+            </div>
+
+            <div class="field">
+    <label>Model</label>
+    <input type="text" class="vehicle-model" list="vehicleModelList1" placeholder="Select or type model">
+    <datalist id="vehicleModelList1"></datalist>
+</div>
+
+            <div class="field">
+                <label>First Available Date</label>
+                <input type="date" id="firstAvailableDate">
+            </div>
+
+            <div class="field">
+                <label>Desired Delivery Date</label>
+                <input type="date" id="desiredDeliveryDate">
+            </div>
+
+            <div class="field">
+                <label>Customer Type</label>
+                <select id="customerType">
+                    <option>POV</option>
+                    <option>Dealer</option>
+                    <option>Fleet</option>
+                    <option>Auction</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Status</label>
+                <select id="jobStatus">
+                    <option>New Lead</option>
+                    <option>Quoted</option>
+                    <option>Booked</option>
+                    <option>Dispatched</option>
+                    <option>Picked Up</option>
+                    <option>In Transit</option>
+                    <option>Delivered</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="route-line">
+            Route:
+            <strong id="routeDisplay">Pickup City, ST → Delivery City, ST</strong>
+        </div>
+    </div>
+
+    <div class="two-column-layout">
+
+        <div class="form-section compact-section">
+            <h3>Pickup Information</h3>
+
+            <div class="field"><label>Business / Dealer Name</label><input type="text"></div>
+            <div class="field"><label>Contact Name</label><input type="text"></div>
+
+            <div class="form-row">
+                <div class="field"><label>Phone 1</label><input type="tel"></div>
+                <div class="field"><label>Phone 2</label><input type="tel"></div>
+            </div>
+
+            <div class="field"><label>Email</label><input type="email"></div>
+            <div class="field"><label>Address</label><input type="text"></div>
+
+            <div class="form-row">
+                <div class="field"><label>City</label><input type="text" id="pickupCity"></div>
+                <div class="field state-field"><label>State</label><input type="text" id="pickupState"></div>
+                <div class="field zip-field"><label>ZIP</label><input type="text"></div>
+            </div>
+
+            <div class="field"><label>Pickup Notes</label><textarea></textarea></div>
+        </div>
+
+        <div class="form-section compact-section">
+            <h3>Delivery Information</h3>
+
+            <div class="field"><label>Business / Dealer Name</label><input type="text"></div>
+            <div class="field"><label>Contact Name</label><input type="text"></div>
+
+            <div class="form-row">
+                <div class="field"><label>Phone 1</label><input type="tel"></div>
+                <div class="field"><label>Phone 2</label><input type="tel"></div>
+            </div>
+
+            <div class="field"><label>Email</label><input type="email"></div>
+            <div class="field"><label>Address</label><input type="text"></div>
+
+            <div class="form-row">
+                <div class="field"><label>City</label><input type="text" id="deliveryCity"></div>
+                <div class="field state-field"><label>State</label><input type="text" id="deliveryState"></div>
+                <div class="field zip-field"><label>ZIP</label><input type="text"></div>
+            </div>
+
+            <div class="field"><label>Delivery Notes</label><textarea></textarea></div>
+        </div>
+
+    </div>
+
+    <div class="form-section vehicle-section">
+
+        <div class="section-title-row">
+            <h3>Vehicle Information</h3>
+            <button type="button" id="addVehicleButton" class="small-action-button">+ Add Vehicle</button>
+        </div>
+
+        <div id="vehicleGrid" class="vehicle-grid">
+
+            <div class="vehicle-card">
+                <h4>Vehicle #1</h4>
+
+                <div class="form-row">
+                    <div class="field year-field">
+                        <label>Year</label>
+                        <select>
+                            <option value="">Year</option>
+                            <option>2027</option>
+                            <option>2026</option>
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                            <option>2020</option>
+                            <option>2019</option>
+                            <option>2018</option>
+                            <option>2017</option>
+                            <option>2016</option>
+                            <option>2015</option>
+                            <option>2014</option>
+                            <option>2013</option>
+                            <option>2012</option>
+                            <option>2011</option>
+                            <option>2010</option>
+                        </select>
+                    </div>
+
+                    <div class="field make-field">
+                        <label>Make</label>
+                        <select class="vehicle-make">
+                            <option value="">Make</option>
+                            <option>Acura</option>
+                            <option>BMW</option>
+                            <option>Chevrolet</option>
+                            <option>Ford</option>
+                            <option>GMC</option>
+                            <option>Honda</option>
+                            <option>Hyundai</option>
+                            <option>Jeep</option>
+                            <option>Kia</option>
+                            <option>Lexus</option>
+                            <option>Mercedes-Benz</option>
+                            <option>Nissan</option>
+                            <option>Ram</option>
+                            <option>Tesla</option>
+                            <option>Toyota</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field">
+    <label>Model</label>
+    <select class="vehicle-model">
+        <option value="">Model</option>
+    </select>
+               </div>
+                    
+                <div class="field">
+                    <label>VIN</label>
+                    <input type="text" maxlength="17">
+                </div>
+
+                <div class="form-row">
+                    <div class="field plate-field">
+                        <label>Plate</label>
+                        <input type="text" maxlength="8">
+                    </div>
+
+                    <div class="field color-field">
+                        <label>Color</label>
+                        <input type="text">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field running-field">
+                        <label>Status</label>
+                        <select>
+                            <option>Running</option>
+                            <option>Inoperable</option>
+                            <option>Starts</option>
+                            <option>Rolls</option>
+                            <option>Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="field odometer-field">
+                        <label>Odometer</label>
+                        <input type="text" maxlength="6">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+ <div class="three-column-layout bottom-job-panels">
+
+    <div class="form-section compact-section">
+        <h3>Carrier</h3>
+
+        <div class="field"><label>Carrier</label><input type="text"></div>
+        <div class="field"><label>Dispatcher</label><input type="text"></div>
+        <div class="field"><label>Driver</label><input type="text"></div>
+        <div class="field"><label>Driver Phone</label><input type="tel"></div>
+
+        <div class="field money-field">
+            <label>Carrier Rate</label>
+            <input type="number" id="carrierRate" step="0.01">
+        </div>
+
+        <div class="field money-field">
+            <label>Carrier Paid</label>
+            <input type="number" id="carrierPaid" step="0.01">
+        </div>
+
+        <div class="calculated-box red-total">
+            <label>Carrier Balance</label>
+            <div id="carrierBalance">$0.00</div>
+        </div>
+
+        <div class="field"><label>Carrier Notes</label><textarea></textarea></div>
+    </div>
+
+    <div class="form-section compact-section">
+        <h3>Billing Customer</h3>
+
+        <div class="field"><label>Business / Dealer Name</label><input type="text"></div>
+        <div class="field"><label>Contact Name</label><input type="text"></div>
+
+        <div class="form-row">
+            <div class="field"><label>Phone 1</label><input type="tel"></div>
+            <div class="field"><label>Phone 2</label><input type="tel"></div>
+        </div>
+
+        <div class="field"><label>Email</label><input type="email"></div>
+        <div class="field"><label>Address</label><input type="text"></div>
+
+        <div class="form-row">
+            <div class="field"><label>City</label><input type="text"></div>
+            <div class="field state-field"><label>State</label><input type="text"></div>
+            <div class="field zip-field"><label>ZIP</label><input type="text"></div>
+        </div>
+
+        <div class="field"><label>Billing Notes</label><textarea></textarea></div>
+    </div>
+
+    <div class="form-section compact-section">
+        <h3>Accounting</h3>
+
+        <div class="field money-field">
+            <label>Customer Total</label>
+            <input type="number" id="customerTotal" step="0.01">
+        </div>
+
+        <div class="field money-field">
+            <label>Deposit Received</label>
+            <input type="number" id="depositReceived" step="0.01">
+        </div>
+
+        <div class="form-row">
+            <div class="field">
+                <label>Card Fee</label>
+                <select id="cardFee">
+                    <option value="0">No Card Fee</option>
+                    <option value="0.035">Apply 3.5%</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>County Tax</label>
+                <select id="countyTax">
+                    <option value="0">None</option>
+                    <option value="0">Miami-Dade</option>
+                    <option value="0">Broward</option>
+                    <option value="0">Palm Beach</option>
+                    <option value="0">Martin</option>
+                    <option value="0">St. Lucie</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Due Date</label>
+            <input type="date">
+        </div>
+
+        <div class="calculated-box red-total">
+            <label>Customer Balance</label>
+            <div id="customerBalance">$0.00</div>
+        </div>
+
+        <div class="calculated-box green-total">
+            <label>Gross Profit</label>
+            <div id="grossProfit">$0.00</div>
+        </div>
+
+        <div class="field"><label>Payment Arrangement</label><textarea></textarea></div>
+    </div>
+
+</div>
